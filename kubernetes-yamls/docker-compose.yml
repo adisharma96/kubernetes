@@ -1,0 +1,13 @@
+version: '3'
+services:
+  web:
+    build:  
+      context: .
+    environment: 
+      - NGINX= "123"
+    ports: 
+      - 3434:80
+    volumes:
+      - nginx-mount:/var/www/nginx
+volumes:
+  nginx-mount:
