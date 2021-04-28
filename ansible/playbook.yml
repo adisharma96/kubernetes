@@ -1,0 +1,21 @@
+---
+- hosts: servers
+  become: true
+  vars:
+    create_containers: 1
+    default_container_name: cnt12
+    default_container_image: nginx
+    #  default_container_command: /bin/bash 
+  tasks:
+    - name: Pull default Docker image
+      docker_image:
+        name: "{{ default_container_image }}"
+        source: pull
+    - name: Create default containers
+      docker_container:
+        name: "{{ default_container_name }}{{ item }}"
+        image: "{{ default_container_image }}"
+        #    command: "{{ default_container_command }}"
+        state: started
+      register: docker_info
+      with_sequence: count={{ create_containers }}      
