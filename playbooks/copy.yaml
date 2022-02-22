@@ -1,0 +1,11 @@
+-
+  name: copy data
+  hosts: servers
+  tasks:
+    - name: copy data
+      copy: src=/etc/ansible/hosts dest=/root
+    - name: install vsftpd
+      apt:
+        name: vsftpd
+        state: present
+      

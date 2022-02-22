@@ -1,0 +1,5 @@
+---
+   - name: Install BIND package
+     apt:
+       name: bind9
+       state: present

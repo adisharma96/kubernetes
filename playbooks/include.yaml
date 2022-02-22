@@ -1,0 +1,5 @@
+- 
+  name: Testing includes
+  hosts: servers
+  tasks:
+    - include: tasks/ubuntu.yaml 

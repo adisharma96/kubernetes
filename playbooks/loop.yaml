@@ -1,0 +1,16 @@
+- 
+  name: Understanding Loops
+  hosts: servers
+  vars:
+    users:
+      - name: ajay
+        uid: 10022
+      - name: rahul
+        uid: 100132
+  tasks:
+     - name: Add User Accounts
+       user:
+         name: "{{ item.name }}"
+         uid: "{{ item.uid }}"
+         state: present
+       loop: "{{ users }}" 

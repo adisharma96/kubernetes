@@ -1,0 +1,9 @@
+-
+  name: testing several ansible modules
+  hosts: servers
+  tasks: 
+    - name: testing command module with cd
+      command: cat resolv.conf chdir=/etc
+
+    - name: testing command module with mkdir
+      command: mkdir /etc creates=/etc

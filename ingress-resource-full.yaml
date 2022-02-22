@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: my-ingress
+spec:
+  rules:
+    - host: wear.abc.com
+      http:
+        paths:
+          - backend:
+             serviceName: wear
+             servicePort: 80
+    - host: gadgets.abc.com
+      http:
+        paths:
+          - backend:
+              serviceName: gadgets
+              servicePort: 80 

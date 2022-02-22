@@ -1,0 +1,26 @@
+- 
+  name: Understand async_function
+  hosts: servers
+  tasks:
+    - name: install sysstat
+      apt:
+        name: sysstat
+        state: present
+      async: 60
+      poll: 0
+      register: job1
+    - name: install samba
+      apt:
+        name: samba
+        state: present
+      async: 60
+      poll: 0
+      register: job2
+    - name: status of the above tasks
+      async_status:
+            jid: "{{ job1.ansible_job_id }}"
+            jid: "{{ job2.ansible_job_id }}"
+      register: result
+      until: result.finished
+      retries: 10
+     

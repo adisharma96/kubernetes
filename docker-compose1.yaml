@@ -1,0 +1,17 @@
+version: '3'
+services:
+  nginx:
+    image: nginx
+    ports:
+     - 8082:80
+    environment:
+     - test="abc"
+    networks:
+     - my_net2
+    volumes:
+     - data:/var/www/html
+volumes:
+  data:
+networks:
+   my_net2:
+

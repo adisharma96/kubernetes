@@ -1,0 +1,26 @@
+- 
+  name: Install VSFTPD
+  hosts: servers
+  handlers:
+    - name: install nginx
+      apt:
+          name: nginx
+          state: present
+  tasks:
+    - name: start nginx
+      service:
+          name: nginx
+          state: started
+      notify:
+         - install nginx
+    - name: edit hosts
+      lineinfile:
+         destfile: /etc/hosts
+         line: '127.0.0.1 {{ item }}'
+      with_items:
+        - nginx
+        - httpd
+        - webserver
+      notify:
+        - install nginx
+       

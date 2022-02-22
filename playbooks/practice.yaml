@@ -1,0 +1,27 @@
+- 
+  name: practice yaml
+  hosts: servers
+  vars:
+    packages:
+      - name: samba
+        required: True
+      - name: htop
+        required: True
+  tasks:
+    - name: Install packages
+      apt:
+        name: "{{ item.name }}"
+        state: present
+      when: "{{ item.required == True }}"
+      loop: "{{ packages }}"
+    - name: Edit file
+      lineinfile:
+             destfile: /etc/hosts
+             line: '127.0.0.1 {{ item }}'
+      with_items:
+        - a
+        - b 
+        - c       
+ 
+
+    

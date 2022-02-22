@@ -1,0 +1,11 @@
+- 
+  name: Using registers to store the output of a task
+  hosts: servers
+  tasks: 
+    - name: start nginx service
+      command: service nginx status
+      register: state
+    - name: write into a file if the service is running
+      command: echo "service is running" > /root/status.txt
+      when: state.stdout.find('running') == 1
+      

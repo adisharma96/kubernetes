@@ -1,0 +1,8 @@
+---
+   - name: Install Docker
+     command: apt-get install docker docker.io -y 
+   - name: Configure Docker
+     service:
+           name: docker
+           state: started
+ 

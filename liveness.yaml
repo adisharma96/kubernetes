@@ -1,0 +1,8 @@
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      livenessProbe:
+        exec:
+          command:
+            - script

@@ -1,0 +1,16 @@
+version: '3'
+services:
+  web-service:
+    image: nginx
+    ports:
+      - 8080:80
+    environment:
+      - NGINX_DEFAULT="22"
+    volumes:
+      - nginx:/usr/share/nginx/html
+    networks:
+      - my_net
+volumes:
+  nginx:
+networks:
+  my_net:

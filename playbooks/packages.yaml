@@ -1,0 +1,28 @@
+-
+  name: install multiple packages using variables
+  hosts: servers
+  vars:
+    packages:
+       - name: samba
+         required: True
+       - name: nginx
+         required: True
+       - name: htop
+         required: True
+  tasks:
+    - name: Install softwares 
+      apt:
+        name: "{{ item.name }}"
+        state: present
+      when: "{{ item.required == True }}"
+      loop: "{{ packages }}" 
+      tags:
+        - softwares
+    - name: Copy files
+      copy: src=/etc/passwd dest=/root
+      tags: 
+        - files
+    - name: make directory if it doesn't exist
+      command: mkdir /root/test creates=/root/test
+      tags:
+        - directories

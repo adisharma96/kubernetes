@@ -1,0 +1,10 @@
+- 
+  name: Using with_items
+  hosts: servers
+  vars_files:
+    - variables/a.yaml
+  tasks:
+    - name: Using lineinfile module
+      lineinfile:
+         destfile: /etc/hosts
+         line: 127.0.0.1 {{ nanu }} {{ rahul }}

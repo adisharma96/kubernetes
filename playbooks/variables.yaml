@@ -1,0 +1,23 @@
+-
+ name: implementing variables
+ hosts: servers
+ vars:
+   host_name: 127.0.0.1
+   nanu: 123456
+ vars_files:
+   - variables/ubuntu.yaml
+ tasks:
+   - name: edit the hostfile
+     lineinfile:
+       destfile: /etc/hosts
+       line: '"{{ host_name }}" web' 
+   - name: create a file
+     command: touch /root/abc.txt
+   - name: edit /root/abc.txt
+     lineinfile:
+       destfile: /root/abc.txt
+       line: 'number is {{ nanu }}'
+   - name: edit /root/abc.txt
+     lineinfile:
+       destfile: /root/abc.txt
+       line: 'number is {{ a }} and {{ b }}'
