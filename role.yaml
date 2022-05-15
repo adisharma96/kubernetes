@@ -1,0 +1,10 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: my-role
+  namespace: test
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "pod/logs"]
+    verbs: ["get", "watch", "list"]
+
